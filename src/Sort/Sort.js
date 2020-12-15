@@ -93,9 +93,6 @@ const Sort = ({employees}) => {
                 />
               )
             }
-            if (filterKey === "dob.age") {
-              <p>{employee[filterKey]}</p>
-            }
           })
         }
       </Card.Group>
