@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Icon, Divider, Header, Segment, Loader } from 'semantic-ui-react';
+import { Card, Icon, Divider, Header } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 import EmployeeCard from '../Employee/EmployeeCard'
 
@@ -13,7 +13,7 @@ const Browse = ({employees}) => {
         </Header>
       </Divider>
       <Card.Group>
-        {employees.length > 0 ?
+        {
           employees.map((employee, index) => {
             return (
               <EmployeeCard
@@ -23,10 +23,6 @@ const Browse = ({employees}) => {
               />
             )
           })
-         :
-        <Segment>
-          <Loader active inline="centered" size="large">Loading</Loader>
-        </Segment>
         }
       </Card.Group>
     </div>

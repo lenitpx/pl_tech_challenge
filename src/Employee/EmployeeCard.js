@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Icon, List } from 'semantic-ui-react';
+import { Card, Image, List } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css'
 
 const EmployeeCard = ({employee, index}) => {
@@ -15,7 +15,7 @@ const EmployeeCard = ({employee, index}) => {
         <List>
           <List.Item>
             <List.Icon size="large" name={employee.gender}/>
-            <List.Content>Nationality: {employee.nat}</List.Content>
+            <List.Content>Nationality:  {employee.nat}</List.Content>
           </List.Item>
         </List>
       </Card.Content>

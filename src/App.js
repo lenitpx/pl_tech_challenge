@@ -2,14 +2,13 @@ import './App.css';
 import axios from 'axios';
 import {useState, useEffect} from 'react';
 import 'semantic-ui-css/semantic.min.css'
-import { Dropdown } from 'semantic-ui-react';
+import { Segment, Loader } from 'semantic-ui-react';
 import {
   Route,
   NavLink,
   HashRouter
 } from "react-router-dom";
 import Browse from './Browse/Browse'
-import Search from './Search/Search'
 import Sort from './Sort/Sort'
 
 function App() {
@@ -18,7 +17,7 @@ function App() {
 
   useEffect(() => {
     function getEmployees() {
-      axios.get('https://randomuser.me/api/1.3?results=50')
+      axios.get('https://randomuser.me/api/1.3?results=400')
     .then((response) => {
       const employeesReturned = response.data.results
       getEmployee(employeesReturned);
@@ -38,20 +37,21 @@ function App() {
           <ul>
             <li><NavLink exact activeClassName="active" to="/">Browse</NavLink></li>
             <li><NavLink exact activeClassName="active" to="/sort">Sort</NavLink></li>
-            <li><NavLink exact activeClassName="active" to="/search">Search</NavLink></li>
           </ul>
         </header>
-      <div className="App-body">
-        <Route exact path="/" render={() => (
-          <Browse employees={employees} />
-        )}/>
-        <Route exact path="/sort" render={() => (
-          <Sort employees={employees} />
-        )}/>
-        <Route exact path="/search" render={() => (
-          <Search employees={employees} />
-        )}/>
-      </div>
+      {employees.length > 0 ?
+        <div className="App-body">
+          <Route exact path="/" render={() => (
+            <Browse employees={employees} />
+          )}/>
+          <Route exact path="/sort" render={() => (
+            <Sort employees={employees} />
+          )}/>
+        </div> :
+        <Segment>
+          <Loader active inline="centered" size="large">Loading</Loader>
+        </Segment>
+      }
       </HashRouter>
     </div>
   );
